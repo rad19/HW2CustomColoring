@@ -21,7 +21,8 @@
         <SurfaceView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/surfaceView" />
+            android:id="@+id/mainDrawingSurfaceView"
+            android:background="@android:color/background_light" />
     </LinearLayout>
 
     <LinearLayout
@@ -38,7 +39,7 @@
             android:layout_weight="1">
 
             <TextView
-                android:text="TextView"
+                android:text="This will display the name of the object that was most recently tapped on. "
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/currentDrawing"
