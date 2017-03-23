@@ -18,11 +18,11 @@
         android:layout_height="match_parent"
         android:layout_weight="6">
 
-        <SurfaceView
+        <edu.up.rad19egr.customcoloring.CanvasDraw
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/mainDrawingSurfaceView"
-            android:background="@android:color/background_light" />
+            android:id="@+id/CanvasDrawView"
+            android:tag="CanvasDraw" />
     </LinearLayout>
 
     <LinearLayout

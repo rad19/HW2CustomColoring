@@ -1,7 +1,9 @@
 package edu.up.rad19egr.customcoloring;
 
+import android.graphics.Canvas;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Surface;
 import android.view.SurfaceView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -12,7 +14,7 @@ import java.util.*;
 
 public class MainActivity extends AppCompatActivity {
 
-    private SurfaceView canvas;
+    private CanvasDraw drawing;
     private SeekBar redSeekBar;
     private SeekBar greenSeekBar;
     private SeekBar blueSeekBar;
@@ -26,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        canvas = (SurfaceView)findViewById(R.id.mainDrawingSurfaceView);
+        drawing = (CanvasDraw)findViewById(R.id.CanvasDrawView);
+        drawing.invalidate();
         redSeekBar = (SeekBar)findViewById(R.id.redSeekBar);
         greenSeekBar = (SeekBar)findViewById(R.id.greenSeekBar);
         blueSeekBar = (SeekBar)findViewById(R.id.blueSeekBar);
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 //        redSeekBar = setRedOnSeekBarChangeListener(new RedSeekBarListener());
 //        greenSeekBar = setGreenOnSeekBarChangeListener(new GreenSeekBarListener());
 //        blueSeekBar = setBlueOnSeekBarChangeListener(new BlueSeekBarListener());
+
 
 
     }
