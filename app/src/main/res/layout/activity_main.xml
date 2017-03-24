@@ -4,10 +4,6 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="horizontal"
     tools:context="edu.up.rad19egr.customcoloring.MainActivity"
     android:weightSum="8">
@@ -22,7 +18,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/CanvasDrawView"
-            android:tag="CanvasDraw" />
+            android:tag="CanvasDraw"
+            android:background="@android:color/holo_blue_bright"
+            android:padding="0dp"
+            android:paddingBottom="0dp"
+            android:paddingEnd="0dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:paddingStart="0dp"
+            android:paddingTop="0dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -42,8 +46,11 @@
                 android:text="This will display the name of the object that was most recently tapped on. "
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/currentDrawing"
-                android:layout_weight="1" />
+                android:id="@+id/currentDrawingName"
+                android:layout_weight="1"
+                android:textSize="24sp"
+                android:textColorLink="@android:color/black"
+                android:textColor="@android:color/black" />
         </LinearLayout>
 
         <LinearLayout
@@ -57,40 +64,52 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:id="@+id/redSeekBar"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:thumbTint="@android:color/holo_red_light"
+                android:progressTint="@android:color/holo_red_light" />
 
             <TextView
-                android:text="Red: "
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:id="@+id/redTextView"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textSize="24sp"
+                android:textColorLink="@android:color/holo_red_light"
+                android:textColor="@android:color/holo_red_light" />
 
             <SeekBar
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:id="@+id/greenSeekBar"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:thumbTint="@android:color/holo_green_light"
+                android:progressTint="@android:color/holo_green_light" />
 
             <TextView
-                android:text="Green: "
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:id="@+id/greenTextView"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textColorLink="@android:color/holo_green_light"
+                android:textSize="24sp"
+                android:textColor="@android:color/holo_green_light" />
 
             <SeekBar
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:id="@+id/blueSeekBar"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:thumbTint="@android:color/holo_blue_light"
+                android:progressTint="@android:color/holo_blue_light" />
 
             <TextView
-                android:text="Blue: "
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:id="@+id/blueTextView"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textColorLink="@android:color/holo_blue_light"
+                android:textSize="24sp"
+                android:textColor="@android:color/holo_blue_light" />
 
         </LinearLayout>
     </LinearLayout>
