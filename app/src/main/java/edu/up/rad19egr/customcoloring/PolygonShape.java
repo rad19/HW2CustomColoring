@@ -27,11 +27,21 @@ public class PolygonShape extends Shape {
         this.polyPath.reset();
         this.polyPath.moveTo((float) this.xCoord.get(0), (float) this.yCoord.get(0));
         for(int i = 1; i < this.xCoord.size(); i++) { //assumes that both arraylists are of same size
-            this.polyPath.lineTo((float) this.xCoord.get(i), (float) this.yCoord.get(i));
+            this.polyPath.lineTo((float)this.xCoord.get(i), (float)(this.yCoord.get(i)));
         }
         this.polyPath.close();
         canvas.drawPath(this.polyPath, paintColor);
+        /**
+         External Citation
+         * Date: 23 March 2017
+         * Problem: Difficulty figuring out how to draw a polygon on canvas.
+         * Resource: http://stackoverflow.com/questions/20544668/how-to-draw
+                     -filled-triangle-on-android-canvas
+         * Solution: I used the example code that a user provided and adapted
+                     it for my own use.
+         */
     }
+
 
     public boolean containsPoint(int x, int y) {
         float minX = this.xCoord.get(0);
@@ -62,11 +72,4 @@ public class PolygonShape extends Shape {
         Rect r = new Rect((int) minX, (int) minY, (int) maxX, (int) maxY);
         return r.contains(x, y);
     }
-
-    @Override
-    public int getSize() {
-        return 0; // won't use this method
-    }
-
-
 }

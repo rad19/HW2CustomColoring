@@ -10,18 +10,18 @@ public abstract class Shape {
 
     public static final int TAP_MARGIN = 10;
 
-    protected Paint paintColor;
+    protected Paint paintColor = new Paint();
 
-    protected String shapeName;
+    protected String shapeName = "DEFAULT_NAME";
 
     public Shape(String name, int color) {
         this.shapeName = name;
-        setColor(color);
+        this.paintColor.setStyle(Paint.Style.FILL);
+        this.setColor(color);
 
     }
 
     public void setColor(int color) {
-        this.paintColor.setStyle(Paint.Style.FILL);
         this.paintColor.setColor(color);
     }
 
@@ -37,7 +37,6 @@ public abstract class Shape {
 
     public abstract boolean containsPoint(int x, int y);
 
-    public abstract int getSize();
 
     /**
      External Citation

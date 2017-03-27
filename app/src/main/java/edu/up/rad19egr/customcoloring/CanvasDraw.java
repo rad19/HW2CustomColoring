@@ -5,22 +5,32 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
+
+import java.util.ArrayList;
+
 import edu.up.rad19egr.customcoloring.Shape.*;
+
+import static android.graphics.Color.BLACK;
+import static android.graphics.Color.GREEN;
+import static android.graphics.Color.LTGRAY;
+import static android.graphics.Color.YELLOW;
 
 /**
  * Created by PouyaRad on 3/22/17.
  */
 
-public class CanvasDraw extends SurfaceView implements View.OnTouchListener {
+public class CanvasDraw extends SurfaceView {
+
+    public ArrayList<Shape> touchableShapes = new ArrayList<Shape>();
 
     // Constructor helper
     private void initializeCanvas() {
         setWillNotDraw(false);
-        this.setOnTouchListener(this);
     }
 
     // Ctor1
@@ -46,45 +56,38 @@ public class CanvasDraw extends SurfaceView implements View.OnTouchListener {
     // touchable.
     @Override
     public void onDraw(Canvas canvas) {
-
         Paint paintBrush = new Paint();
-        Path polyPath = new Path();
 
         // draws grass
-//        paintBrush.setStyle(Paint.Style.FILL);
-//        paintBrush.setColor(Color.GREEN);
-//        canvas.drawRect(0f, 800f, 1600f, 1300f, paintBrush);
-
-        RectShape grass = new RectShape("Grass", 0xff00ff00, 0f, 800f, 1600f, 1300f);
+        RectShape grass = new RectShape("Grass", 0xFF00FF00, canvas, 0f, 800f, 1600f, 1300f);
         grass.drawMe(canvas);
+        touchableShapes.add(grass);
 
         // draws body of house
-        paintBrush.setColor(Color.LTGRAY);
-        canvas.drawRect(200f, 600f, 600f, 1000f, paintBrush);
+        RectShape houseBase = new RectShape("House Base", 0xFFC0C0C0, canvas, 200f, 600f, 600f, 1000f);
+        houseBase.drawMe(canvas);
+        touchableShapes.add(houseBase);
 
         // draws roof of house
-        paintBrush.setColor(Color.BLACK);
-        polyPath.reset();
-        polyPath.moveTo(160f, 600f);
-        polyPath.lineTo(400f, 400f);
-        polyPath.lineTo(640f, 600f);
-        polyPath.close();
-        canvas.drawPath(polyPath, paintBrush);
-        /**
-         External Citation
-         * Date: 23 March 2017
-         * Problem: Difficulty figuring out how to draw a triangle on canvas.
-         * Resource: http://stackoverflow.com/questions/20544668/how-to-draw
-                     -filled-triangle-on-android-canvas
-         * Solution: I used the example code that a user provided and adapted
-                     it for my own use.
-         */
+        ArrayList<Float> roofXCoord = new ArrayList<Float>();
+        roofXCoord.add(160f);
+        roofXCoord.add(400f);
+        roofXCoord.add(640f);
+        ArrayList<Float> roofYCoord = new ArrayList<Float>();
+        roofYCoord.add(600f);
+        roofYCoord.add(400f);
+        roofYCoord.add(600f);
+        PolygonShape houseRoof = new PolygonShape("House Roof", 0xFF000000, canvas, roofXCoord, roofYCoord);
+        houseRoof.drawMe(canvas);
+        touchableShapes.add(houseRoof);
 
         // draws sun
-        paintBrush.setColor(Color.YELLOW);
-        canvas.drawCircle(1320f, 220f, 140, paintBrush);
+        CircleShape sun = new CircleShape("Sun", 0xFFFFFF00, canvas, 1320f, 220f, 140f);
+        sun.drawMe(canvas);
+        touchableShapes.add(sun);
 
         // draws clouds (unmodifiable in color, sorry)
+        // not CircleShape objects because they don't need to be
         paintBrush.setColor(Color.WHITE);
         canvas.drawCircle(300f, 180f, 80f, paintBrush);
         canvas.drawCircle(340f, 140f, 80f, paintBrush);
@@ -94,37 +97,37 @@ public class CanvasDraw extends SurfaceView implements View.OnTouchListener {
         canvas.drawCircle(720f, 240f, 80f, paintBrush);
 
         // draws a beautiful lake
-        paintBrush.setColor(Color.rgb(36, 9, 189));
-        canvas.drawOval(760f, 880f, 1420f, 1120f, paintBrush);
+        OvalShape lake = new OvalShape("Lake", 0xFF0000CC, canvas, 760f, 880f, 1420f, 1120f);
+        lake.drawMe(canvas);
+        touchableShapes.add(lake);
 
-        // draws a UFO in the distance, with a customizable retractor beam
+        // draws a UFO in the distance, with a customizable tractor beam
         paintBrush.setColor(Color.GRAY);
         canvas.drawCircle(1010f, 360f, 80f, paintBrush);
         paintBrush.setColor(Color.LTGRAY);
         canvas.drawOval(740f, 350f, 1280f, 480f, paintBrush);
         paintBrush.setColor(Color.GRAY);
         canvas.drawOval(820f, 400f, 1200f, 520f, paintBrush);
-        paintBrush.setColor(Color.YELLOW);
-        polyPath.reset();
-        polyPath.moveTo(990f, 515f);
-        polyPath.lineTo(1030f, 515f);
-        polyPath.lineTo(1100f, 800f);
-        polyPath.lineTo(920f, 800f);
-        polyPath.close();
-        canvas.drawPath(polyPath, paintBrush);
+
+        // Draws the customizable tractor beam
+        ArrayList<Float> beamXCoord = new ArrayList<Float>();
+        beamXCoord.add(990f);
+        beamXCoord.add(1030f);
+        beamXCoord.add(1100f);
+        beamXCoord.add(920f);
+        ArrayList<Float> beamYCoord = new ArrayList<Float>();
+        beamYCoord.add(515f);
+        beamYCoord.add(515f);
+        beamYCoord.add(800f);
+        beamYCoord.add(800f);
+        PolygonShape tractorBeam = new PolygonShape("UFO", 0xFFFFFF00, canvas, beamXCoord, beamYCoord);
+        tractorBeam.drawMe(canvas);
+        touchableShapes.add(tractorBeam);
+
 
         // finish main canvas portrait
     }
 
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        int xTouch = (int) event.getX();
-        int yTouch = (int) event.getY();
 
-
-
-
-        return true;
-    }
 
 }

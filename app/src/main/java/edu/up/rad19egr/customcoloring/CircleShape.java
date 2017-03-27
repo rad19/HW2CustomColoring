@@ -34,9 +34,4 @@ public class CircleShape extends Shape {
         return (distance < this.radius + TAP_MARGIN);
     }
 
-    @Override
-    public int getSize() {
-        return (int) (Math.PI * this.radius * this.radius);
-    }
-
 }

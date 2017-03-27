@@ -1,20 +1,23 @@
 package edu.up.rad19egr.customcoloring;
 
+import android.graphics.*;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+
+import edu.up.rad19egr.customcoloring.Shape;
+
 /**
  * Created by PouyaRad on 3/24/17.
  */
 
-import android.graphics.*;
-import edu.up.rad19egr.customcoloring.Shape;
-
-public class RectShape extends Shape {
+public class OvalShape extends Shape {
 
     private float left;
     private float top;
     private float right;
     private float bottom;
 
-    public RectShape(String name, int color, float left, float top, float right, float bottom) {
+    public OvalShape(String name, int color, float left, float top, float right, float bottom) {
         super(name, color);
         this.left = left;
         this.top = top;
@@ -24,7 +27,7 @@ public class RectShape extends Shape {
 
     @Override
     public void drawMe(Canvas canvas) {
-        canvas.drawRect(this.left, this.top, this.right, this.bottom, paintColor);
+        canvas.drawOval(this.left, this.top, this.right, this.bottom, paintColor);
     }
 
     @Override
